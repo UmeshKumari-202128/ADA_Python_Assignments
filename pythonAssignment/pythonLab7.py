@@ -1,33 +1,69 @@
+# Design a class that accommodates all the Tree traversal types (Inorder, Preorder, Postorder).
 
-def binarySearch(array,x,low,high):
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+ 
+ 
+# inorder tree traversal
+def printInorder(root):
+ 
+    if root:
+ 
+        # recur on node's left
+        printInorder(root.left)
+ 
+        # print the data of node
+        print(root.val),
+ 
+        # recur on node's right
+        printInorder(root.right)
 
-    
-    while low<=high:
+# preorder tree traversal
+def printPreorder(root):
 
-        mid=low+(high-low)//2
+    if root:
 
-        if array[mid]==x :
-            return mid
+        # print the data of node
+        print(root.val),
+ 
+        # recur on node's left
+        printPreorder(root.left)
+ 
+        # recur on node's right
+        printPreorder(root.right)
+ 
+# postorder tree traversal
+def printPostorder(root):
+ 
+    if root:
+ 
+        # recur on node's left
+        printPostorder(root.left)
+ 
+        # recur on node's right 
+        printPostorder(root.right)
+ 
+        # print the data of node
+        print(root.val)
+ 
+ 
 
-        elif array[mid]<x :
-            if array[low]>array[mid] and array[low]<=x:
-                high = mid-1
-            else:
-                low=mid+1
-        else :
-           if array[high]<array[mid] and array[high]>=x:
-            low=mid+1
-           else:
-            high = mid-1;
 
-    return -1
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
 
-array=[11,16,20,2,4,5,8]
-x=8
+# Function call
+print("\nInorder traversal of binary tree is")
+printInorder(root)
 
-result=binarySearch(array,x,0,len(array)-1) # Calling Function 
+print("\nPreorder traversal of binary tree is")
+printPreorder(root)
 
-if result != -1:
-    print("Element is present at index " + str(result))
-else:
-    print("Not found")
+print("\nPostorder traversal of binary tree is")
+printPostorder(root)
